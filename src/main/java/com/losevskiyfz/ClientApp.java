@@ -1,14 +1,14 @@
 package com.losevskiyfz;
 
 import com.losevskiyfz.controllers.PhoneBookController;
+import com.losevskiyfz.controllers.PhoneBookControllerImpl;
 
 import java.io.IOException;
-import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class ClientApp {
 
-    private static PhoneBookController phoneBookController = new PhoneBookController();
+    private static PhoneBookController phoneBookController = new PhoneBookControllerImpl();
     private static final Scanner scanner = new Scanner(System.in);
 
     private static void showMenu(){
@@ -26,19 +26,13 @@ public class ClientApp {
     }
 
     private static void getPhoneByName() {
-        System.out.print("\033[H\033[2J");
         System.out.print("Write a wanted name: ");
         String name = scanner.nextLine();
-        try{
-            String phoneNumber = phoneBookController.getByName(name);
-            System.out.println("Found phone: " + phoneNumber);
-        } catch (NoSuchElementException e){
-            System.out.println("Name not found");
-        }
+        String phoneNumber = phoneBookController.getByName(name);
+        System.out.println("Found phone: " + phoneNumber);
     }
 
     private static void getServiceContact() {
-        System.out.print("\033[H\033[2J");
         String serviceContact = phoneBookController.getServiceContact();
         System.out.println("Service phone: " + serviceContact);
     }
