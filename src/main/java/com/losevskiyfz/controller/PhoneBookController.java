@@ -1,20 +1,18 @@
-package com.losevskiyfz;
+package com.losevskiyfz.controller;
 
-import com.losevskiyfz.repository.PhoneBookHashMapRepository;
 import com.losevskiyfz.service.PhoneBookService;
-import com.losevskiyfz.service.PhoneBookServiceImpl;
 import lombok.AllArgsConstructor;
 
 import java.util.Optional;
 import java.util.Scanner;
 
 @AllArgsConstructor
-public class ClientApp {
+public class PhoneBookController {
 
     private final PhoneBookService phoneBookService;
     private final Scanner scanner = new Scanner(System.in);
 
-    private void showMenu(){
+    private void showMenu() {
         System.out.println("-------------------------------Menu--------------------------------");
         System.out.println("1 - Get by name");
         System.out.println("2 - Get service contact");
@@ -22,7 +20,7 @@ public class ClientApp {
         System.out.println("-------------------------------------------------------------------");
     }
 
-    private char getChosenOption(){
+    private char getChosenOption() {
         char result = scanner.next().charAt(0);
         scanner.nextLine();
         return result;
@@ -34,7 +32,7 @@ public class ClientApp {
         System.out.println(fetchPhoneByName(name));
     }
 
-    private String fetchPhoneByName(String name){
+    private String fetchPhoneByName(String name) {
         Optional<String> optionalName = phoneBookService.findByName(name);
         return optionalName.orElse("Name " + name + " is not found");
     }
@@ -44,16 +42,16 @@ public class ClientApp {
         System.out.println("Service phone: " + serviceContact);
     }
 
-    private String fetchServiceContact(){
+    private String fetchServiceContact() {
         phoneBookService.logServiceContact();
         return phoneBookService.getServiceContact();
     }
 
     public void run() {
-        while (true){
+        while (true) {
             showMenu();
             int option = getChosenOption();
-            switch (option){
+            switch (option) {
                 case '1':
                     getPhoneByName();
                     break;
@@ -68,13 +66,4 @@ public class ClientApp {
             }
         }
     }
-
-    public static void main(String[] args) {
-        new ClientApp(
-                new PhoneBookServiceImpl(
-                        new PhoneBookHashMapRepository()
-                )
-        ).run();
-    }
-
 }
