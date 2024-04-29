@@ -1,4 +1,4 @@
-package com.losevskiyfz.repositories;
+package com.losevskiyfz.repository;
 
 import java.util.Optional;
 

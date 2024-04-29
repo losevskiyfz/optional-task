@@ -1,17 +1,15 @@
-package com.losevskiyfz.services;
+package com.losevskiyfz.service;
 
-import com.losevskiyfz.repositories.PhoneBookRepository;
+import com.losevskiyfz.repository.PhoneBookRepository;
+import lombok.AllArgsConstructor;
 
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
+@AllArgsConstructor
 public class PhoneBookServiceImpl implements PhoneBookService {
 
     private final PhoneBookRepository phoneBookRepository;
-
-    public PhoneBookServiceImpl(PhoneBookRepository phoneBookRepository) {
-        this.phoneBookRepository = phoneBookRepository;
-    }
 
     @Override
     public Optional<String> findByName(String name) {

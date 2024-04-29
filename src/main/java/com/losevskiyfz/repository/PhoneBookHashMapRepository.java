@@ -1,4 +1,4 @@
-package com.losevskiyfz.repositories;
+package com.losevskiyfz.repository;
 
 import com.losevskiyfz.domain.BookRecord;
 

@@ -1,16 +1,14 @@
-package com.losevskiyfz.controllers;
+package com.losevskiyfz.controller;
 
-import com.losevskiyfz.services.PhoneBookService;
+import com.losevskiyfz.service.PhoneBookService;
+import lombok.AllArgsConstructor;
 
 import java.util.Optional;
 
+@AllArgsConstructor
 public class PhoneBookControllerImpl implements PhoneBookController {
 
     private final PhoneBookService phoneBookService;
-
-    public PhoneBookControllerImpl(PhoneBookService phoneBookService) {
-        this.phoneBookService = phoneBookService;
-    }
 
     @Override
     public String getByName(String name){

@@ -1,7 +1,9 @@
-package com.losevskiyfz.clientapp;
+package com.losevskiyfz;
 
-import com.losevskiyfz.controllers.PhoneBookController;
-import com.losevskiyfz.controllers.PhoneBookControllerImpl;
+import com.losevskiyfz.controller.PhoneBookController;
+import com.losevskiyfz.controller.PhoneBookControllerImpl;
+import com.losevskiyfz.repository.PhoneBookHashMapRepository;
+import com.losevskiyfz.service.PhoneBookServiceImpl;
 
 import java.util.Scanner;
 
@@ -11,7 +13,7 @@ public class ClientApp {
 
     private final Scanner scanner = new Scanner(System.in);
 
-    public ClientApp(PhoneBookControllerImpl phoneBookController) {
+    public ClientApp(PhoneBookController phoneBookController) {
         this.phoneBookController = phoneBookController;
     }
 
@@ -59,6 +61,16 @@ public class ClientApp {
                     break;
             }
         }
+    }
+
+    public static void main(String[] args) {
+        new ClientApp(
+                new PhoneBookControllerImpl(
+                        new PhoneBookServiceImpl(
+                                new PhoneBookHashMapRepository()
+                        )
+                )
+        ).run();
     }
 
 }

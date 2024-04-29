@@ -1,4 +1,4 @@
-package com.losevskiyfz.services;
+package com.losevskiyfz.service;
 
 import java.util.Optional;
 
