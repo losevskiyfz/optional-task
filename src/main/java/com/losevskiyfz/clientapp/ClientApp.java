@@ -1,17 +1,21 @@
-package com.losevskiyfz;
+package com.losevskiyfz.clientapp;
 
 import com.losevskiyfz.controllers.PhoneBookController;
 import com.losevskiyfz.controllers.PhoneBookControllerImpl;
 
-import java.io.IOException;
 import java.util.Scanner;
 
 public class ClientApp {
 
-    private static PhoneBookController phoneBookController = new PhoneBookControllerImpl();
-    private static final Scanner scanner = new Scanner(System.in);
+    private final PhoneBookController phoneBookController;
 
-    private static void showMenu(){
+    private final Scanner scanner = new Scanner(System.in);
+
+    public ClientApp(PhoneBookControllerImpl phoneBookController) {
+        this.phoneBookController = phoneBookController;
+    }
+
+    private void showMenu(){
         System.out.println("-------------------------------Menu--------------------------------");
         System.out.println("1 - Get by name");
         System.out.println("2 - Get service contact");
@@ -19,25 +23,25 @@ public class ClientApp {
         System.out.println("-------------------------------------------------------------------");
     }
 
-    private static char getChosenOption(){
+    private char getChosenOption(){
         char result = scanner.next().charAt(0);
         scanner.nextLine();
         return result;
     }
 
-    private static void getPhoneByName() {
+    private void getPhoneByName() {
         System.out.print("Write a wanted name: ");
         String name = scanner.nextLine();
         String phoneNumber = phoneBookController.getByName(name);
         System.out.println("Found phone: " + phoneNumber);
     }
 
-    private static void getServiceContact() {
+    private void getServiceContact() {
         String serviceContact = phoneBookController.getServiceContact();
         System.out.println("Service phone: " + serviceContact);
     }
 
-    public static void main(String[] args) throws IOException {
+    public void run() {
         while (true){
             showMenu();
             int option = getChosenOption();
@@ -56,6 +60,5 @@ public class ClientApp {
             }
         }
     }
-
 
 }
